@@ -1,2 +1,2 @@
 # python_wiki
-The usefull snippets for pyton programming.
+The usefull samples & snippets for python programmers.
