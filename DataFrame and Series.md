@@ -119,13 +119,80 @@ df_copy = df.copy(deep=True)
 
 ### Просмотр свойств DataFrame
 ```python
-df.columns      ; список столбцов
-df.shape        ; размерность DataFrame
-df.dtypes       ; типы столбцов
+len(df)                   ; количество строк в DataFrame
+df.columns                ; столбцы DataFrame (для получения списка столбцов использовать to_list())
+df.shape                  ; размерность DataFrame
+df.dtypes                 ; типы столбцов
 
-df.info()       ; краткая сводка: типы столбцов и кол-во не NaN значений в каждом из них
-df.describe()   ; статистика по числовым столбцам (среднее, медиана, квартили, ...)
+df.info()                 ; краткая сводка: типы столбцов и кол-во не NaN значений в каждом из них
+df.describe()             ; статистика по числовым столбцам (среднее, медиана, квартили, ...)
 
-df.head(10)     ; вывести первые 10 строк DataFrame
-df.tail(10)     ; вывести последние 10 строк DataFrame
+df.head(10)               ; вывести первые 10 строк DataFrame
+df.tail(10)               ; вывести последние 10 строк DataFrame
+
+df.columns.to_list()      ; список названий столбцов
+df.Col_2.to_list()        ; преобразование значений столбца в список
+df['Col_2'].unique()      ; уникальные значения в столбце
+df.Сol_2.value_counts()   ; количества каждого из значений в столбце
+df.index.to_list()        ; список значений индекса
+```
+
+## Операции над объектом DataFrame
+
+#### Преобразование типа столбцов
+
+#### Переименование столбцов
+```python
+df.columns = ['Col_1','Col_2','Col_3']      ; изменить названия ВСЕХ столбцов
+df.rename(columns={'ColOld_1':'ColNew_1',   ; переименовать указанные столбцы
+                   'ColOld_2':'ColNew_2'}, 
+                    inplace=True)
+df.rename(columns=lambda x: x +1)           ; mass renaming of columns
+```
+
+#### Добавление строк
+```python
+new_line = {'id':3000, 'ShopName':'КЛ-98', 'DateOpen':pd.datetime(2020,1,1) }
+df.append([new_line, new_line2], ignore_index=True)   ; добавляет строки в конец; возвращает новый DataFrame
+df1.append(df2)                                       ; добавляет строки df1 в конец df2 (у df1 и df2 столбцы должны быть одинаковыми)
+df.append(df.sum(axis=0), ignore_index=True)          ; добавляет строку с суммой значений для каждого столбца
+pd.concat([df1, df2], ignore_index=True)              ; объединение строк двух DataFrame'ов
+```
+
+#### Добавление столбцов
+```python
+df['Sales'] = 0                                       ; добавить столбец 'Sales', заполненный нулями
+df['Competitor'] = [True]*7 + [False*2]               ; добавить столбец из 5 значений True и 2 значений False
+```
+
+pd.concat([df1, df2],axis=1)       ; добавляет столбцы DF df1 в конец DF df2 (число строк должны быть одинаковым)
+df1.join(df2,on=col1,how='inner')  ; соединение столбцов df1 и df2, где совпадают значения для столбца col1 (may use 'left', 'right', 'outer', 'inner')
+df2.merge(df1, left_on=’Col_id’, right_on=’Col_id’, suffixes=(‘_left’, ‘_right’))  ; аналог LEFT JOIN
+```
+
+#### Удаление строк
+```python
+df.drop([7,8], axis=0)   ; удалить 7-ю и 8-ю строки DF; возвращает новый DF (можно указать inplace=True)
+```
+
+#### Удаление столбцов
+```python
+df.drop('Col_2r', axis=1, inplace=True)             ; удаление одного стобца
+df.drop(['Col_1', 'Col_4'], axis=1, inplace=True)   ; удаление нескольких столбцов
+```
+
+#### Модификация индекса
+```python
+df = df.set_index("Col_K")                   ; установить указанный столбец в качестве индекса
+df.reset_index()                             ; сбросить индекс в значения, начинающиеся с 0
+df.index = pd.date_range('1900/1/30',        ; создание date-индекса
+                         periods=df.shape[0])
+df.rename(index=lambda x: x + 1)             ; mass renaming of index
+```
+
+#### Применение функции apply и applymap
+```python
+df.loc[:,'Col2':'Col4'].apply(max, axis=0)        ; получить максимальные значения в столбцах
+df.loc[:,'Col2':'Col4'].apply(np.argmax, axis=1)  ; получить название столбца с максимальным значением в строках
+df.loc[:,'Col2':'Col4'].applymap(float)           ; применить float ко всем значениям в таблице - ИЗМЕНЯЕТ DataFrame !!
 ```
