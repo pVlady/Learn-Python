@@ -1,2 +1,2 @@
 # python_wiki
-The usefull samples | snippets | classes for python programmers.
+The usefull samples | snippets | modules for python programmers.
