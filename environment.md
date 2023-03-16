@@ -24,6 +24,7 @@ python3 -m venv env_folder_name
 Установить указанную версию numpy     |`py -m pip install numpy==1.24.1`      |`python3 -m pip install requests==1.24.1`
 Установить последнюю версию           |`py -m pip install --upgrade numpy`    |`python3 -m pip install --upgrade numpy`
 Установка из файла *[requirements.txt](https://pip.pypa.io/en/latest/reference/requirements-file-format/#requirements-file-format)* |`py -m pip install -r requirements.txt`|`python3 -m pip install -r requirements.txt`
+Просмотр установленных пакетов        |`py -m pip freeze`                     |`python3 -m pip freeze`
 Покинуть окружение                    |`deactivate`                           |`deactivate`
 
->Чтобы установить последнюю версию пакета заданнго выпуска, нужно использовать `numpy>=1.0.0,<2.0.0`
+>Чтобы установить последнюю версию пакета заданного выпуска, нужно использовать `numpy>=1.0.0,<2.0.0`
