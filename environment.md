@@ -4,6 +4,16 @@
 py -m pydoc modules  ; список всех установленных модулей — то же, что и >>> help("modeles")
 pip freeze           ; список модулей, установленных через pip
 ```
+Обновление пакета `pip` и установка основных пакетов
+```bash
+py -m pip install --upgrade pip
+py -m pip install pandas          ; подтянет numpy
+py -m pip install pyodbc
+py -m pip install pywin32
+py -m pip install xlrd
+py -m pip install xlwt
+py -m pip install openpyxl
+```
 
 ## Создание виртуальных окружений
 Начиная с версии python 3.3 нет необходимости устанавливать `virtialenv`, поскольку модуль `venv` входит в начальную установку.\
