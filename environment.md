@@ -7,7 +7,11 @@ pip freeze           ; список модулей, установленных �
 Обновление пакета `pip` и установка основных пакетов
 ```bash
 py -m pip install --upgrade pip
-py -m pip install pandas          ; подтянет numpy
+py -m install numpy
+py -m install scipy
+py -m install statsmodels
+py -m install -U scikit-learn
+py -m pip install pandas          ; подтянет numpy, если не был установлен
 py -m pip install pyodbc
 py -m pip install pywin32
 py -m pip install xlrd
