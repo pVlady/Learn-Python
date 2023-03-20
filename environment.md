@@ -14,8 +14,8 @@ py -m install -U scikit-learn
 py -m pip install pandas          ; подтянет numpy, если не был установлен
 py -m pip install pyodbc
 py -m pip install pywin32
-py -m pip install xlrd
-py -m pip install xlwt
+py -m pip install xlrd            ; с версии 2.0 не поддерживает xlsx-файлы
+py -m pip install xlwt            ; deprecated !!
 py -m pip install openpyxl
 ```
 
