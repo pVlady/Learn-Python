@@ -1,2 +1,2 @@
-# python_wiki
+# Learn Python!
 The usefull samples | snippets | modules for python programmers.
